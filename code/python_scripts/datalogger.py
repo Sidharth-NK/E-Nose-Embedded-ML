@@ -3,11 +3,11 @@ import time
 import csv
 import os
 
-# Define serial communication parameters
-BAUD_RATE = 9600  # Baud rate for Serial Communication
+
+BAUD_RATE = 9600  
 SERIAL_PORT = "/dev/ttyACM0"  # Change for Windows: "COMx"
 
-# Ask the user for the odor label
+
 odor_label = input("Enter odor name: ").strip().lower()
 
 # Directory for storing different odor data
@@ -29,7 +29,6 @@ except serial.SerialException as error:
 # Open CSV file for writing sensor data
 with open(CSV_FILE, mode='w', newline="") as file:
     writer = csv.writer(file)
-    # Write header row (updated with Location and Label)
     writer.writerow(['Timestamp', 'Humidity', 'Temperature', 'NO2', 'Ethanol', 'VOC', 'CO', 'Location', 'Label'])
 
     print(f"Logging '{odor_label}' sensor data to '{CSV_FILE}'... Press Ctrl+C to stop.")
@@ -43,7 +42,7 @@ with open(CSV_FILE, mode='w', newline="") as file:
                     # Split the line into parts (humidity, temp, NO2, Ethanol, VOC, CO, location, placeholder_label)
                     parts = line.split(',')
                     
-                    # Convert numerical values to floats (skip the placeholder label)
+                    # Convert numerical values to floats
                     values = list(map(float, parts[:7]))  # First 7 values are numbers
                     placeholder_label = parts[7]  # Last value is the placeholder "label"
 
@@ -51,17 +50,12 @@ with open(CSV_FILE, mode='w', newline="") as file:
                     if len(parts) != 8:
                         raise ValueError("Incorrect Number of Values Received!")
 
-                    # Unpack numerical values
                     humid, temp, no2, ethanol, voc, co, location = values
-                    
-                    # Generate timestamp
                     timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
 
-                    # Write the data to the CSV file (replace placeholder with actual label)
                     writer.writerow([timestamp, humid, temp, no2, ethanol, voc, co, location, odor_label])
                     file.flush()  # Save data immediately
 
-                    # Print the received sensor data
                     print(f"{timestamp} | {odor_label.upper()} | Humid: {humid} | Temp: {temp} | NO2: {no2} | Ethanol: {ethanol} | VOC: {voc} | CO: {co} | Location: {int(location)}")
 
                 except ValueError as e:
