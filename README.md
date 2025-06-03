@@ -1,93 +1,102 @@
-# Artificial Nose
+# 🧠 Artificial Nose – Smell Classification using Machine Learning
 
+The **Artificial Nose** is a machine learning-based embedded system designed to classify various smells such as coffee, tea, vinegar, and perfume. It mimics the human olfactory system using a **multi-channel gas sensor**, **temperature and humidity sensor**, and ML models to identify smells in real-time.
 
+##  Project Summary
 
-## Getting started
+- **Sensors Used:**
+  - **Multichannel Gas Sensor V2** – Captures readings like NO2, Ethanol, VOC, CO.
+  - **DHT22 Sensor** – Records temperature and humidity.
+- **Controller:**
+  - **Wio Terminal** – Used for data collection, processing, and displaying real-time results.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+##  Data & Features
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+The system uses the following sensor values as input features:
 
-## Add your files
+- `Humidity`, `Temperature`, `NO2`, `Ethanol`, `VOC`, `CO`
+- `Label` – The type of smell (e.g., Tea, Coffee, etc.)
+- `Location` – The environment where data is collected (e.g., Office or Pantry)
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+###  Smell Categories
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/sid2ko3/artificial-nose.git
-git branch -M main
-git push -uf origin main
-```
+1. Coffee  
+2. Tea  
+3. Vinegar  
+4. Perfume  
+5. Normal Air (No smell)
 
-## Integrate with your tools
+The dataset includes both **raw unbalanced data** and a **processed balanced dataset** using SMOTE (Synthetic Minority Over-sampling Technique).
 
-- [ ] [Set up project integrations](https://gitlab.com/sid2ko3/artificial-nose/-/settings/integrations)
+---
 
-## Collaborate with your team
+## Machine Learning Approaches
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+This project implements **three ML pipelines** for smell classification:
 
-## Test and Deploy
+### 1. Edge Impulse
 
-Use the built-in continuous integration in GitLab.
+- Cloud-based TinyML platform for training and deployment.
+- [Live Dashboard (Edge Impulse)](https://studio.edgeimpulse.com/public/692869/live)
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+### 2. Classic Machine Learning
 
-***
+- Implemented using:
+  - **Decision Tree Classifier**
+  - **K-Nearest Neighbors (KNN)**
+- Balanced datasets using SMOTE.
 
-# Editing this README
+### 3. Deep Learning (Neural Network)
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+- Built using a **Sequential Dense Neural Network**
+- Deployed using **TensorFlow Lite (TFLite)** for embedded inference
 
-## Suggestions for a good README
+---
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## Experimental Setup
 
-## Name
-Choose a self-explaining name for your project.
+- **Environment 1:** Office  
+- **Environment 2:** Pantry
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+Multiple samples were collected in each environment to increase model robustness and simulate real-world variation.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+---
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+## Repository structure
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+- **Code:** Contains the arduino code and the python scripts for data collection and logging.
+- **datsets:** Contains two datsets bascially. One is raw dataset and the other one is limited to 250 samples
+- **hardware:** Contains the datasheets of the sensors and wioterminal. It also contains the official website documentation for each hardware components. Also contains a folder **libraries** which is the required library to be installed in **Arduino IDE**
+- **images:** Contains the images of plaforms and final product result.
+- **ml pipeline:** Contains the ml notebooks used and the edge impulse files
+- **Documentation:** Document for reference.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+---
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+## Applications
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+- Smart cooking assistants and gas leak detectors
+- Environmental monitoring
+- Industrial safety systems
+- Medical diagnostics (e.g., detecting diseases via breath analysis)
+- Quality control in food & beverage industries
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+---
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## How to Use
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+- Clone this repository:
+   ```bash
+   git clone https://gitlab.com/sid2ko3/artificial-nose.git
+   cd artificial-nose
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## Author
+
+- Sidharth N Krishna - Edge Analytics Intern, ICFOSS
+- GitHub: github.com/Sidharth-NK
+- Email: sid4official@gmail.com
 
 ## License
-For open source projects, say how it is licensed.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
