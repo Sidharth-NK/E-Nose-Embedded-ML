@@ -1,6 +1,12 @@
 # 🧠 Artificial Nose – Smell Classification using Machine Learning
 
 The **Artificial Nose** is a machine learning-based embedded system designed to classify various smells such as coffee, tea, vinegar, and perfume. It mimics the human olfactory system using a **multi-channel gas sensor**, **temperature and humidity sensor**, and ML models to identify smells in real-time.
+<p align="center">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="images/Ai_Nose_Body.png" alt="ainose" width="200">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="images/normal_air_reading.png" alt="display" width="200" height="50">
+</p>
 
 ##  Project Summary
 
