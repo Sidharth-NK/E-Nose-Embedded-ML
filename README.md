@@ -5,7 +5,7 @@ The **Artificial Nose** is a machine learning-based embedded system designed to 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="images/Ai_Nose_Body.png" alt="ainose" width="200">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="images/normal_air_reading.png" alt="display" width="200" height="50">
+  <img src="images/normal_air_reading.png" alt="display" width="200" height="200">
 </p>
 
 ##  Project Summary
