@@ -1,4 +1,4 @@
-# 🧠 Artificial Nose – Smell Classification using Machine Learning
+# 🧠 E-Nose: An Embedded Artificial Nose for Real-Time Odor Classification
 
 The **Artificial Nose** is a machine learning-based embedded system designed to classify various smells such as coffee, tea, vinegar, and perfume. It mimics the human olfactory system using a **multi-channel gas sensor**, **temperature and humidity sensor**, and ML models to identify smells in real-time.
 <p align="center">
